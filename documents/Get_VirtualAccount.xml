@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <Data>
+        <MerchantID>2000132</MerchantID>
+        <MerchantTradeNo>201401130022</MerchantTradeNo>
+        <RtnCode>2</RtnCode>
+        <RtnMsg>Get VirtualAccount Succeeded</RtnMsg>
+        <TradeNo>20140113161656470446</TradeNo>
+        <TradeDate>2014/01/13 16:16:56</TradeDate>
+        <TradeAmount>13413</TradeAmount>
+        <BankCode>812</BankCode>
+        <vAccount>1234574356830236</vAccount>
+        <ExpireDate>2014/01/23</ExpireDate>
+    </Data>
+</Root>
