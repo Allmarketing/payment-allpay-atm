@@ -1,7 +1,8 @@
 <?php
-require_once "returncode/allpay.php";
+require_once "returncode/atm.php";
 require_once "class/mcrypt/aes.php";
-class Model_Order_Payment_Allpay {
+require_once "class/Curl.class.php";
+class Model_Order_Payment_Allpay_Atm {
     //put your code here
     protected $config;
     protected $hash = array();
@@ -9,11 +10,10 @@ class Model_Order_Payment_Allpay {
     protected $fields = array();
     protected $codedata = array();
     protected $url = array(
-        'testing' => "http://pay-stage.allpay.com.tw/payment/gateway",
-        'running' => "https://pay.allpay.com.tw/payment/gateway",
+        'testing' => "http://pay-stage.allpay.com.tw/AtmPayment/ChooseAtmBank",
+        'running' => "https://pay.allpay.com.tw/payment/Srv/gateway",
     );
-    protected $template = "templates/ws-cart-card-transmit-tpl.html";
-    protected $xml_template = "templates/allpay-xmldata.xml";
+    protected $xml_template = "templates/allpay-vaccount-xmldata.xml";
     function __construct($config,$hash,$mode="testing") {
         $this->config = $config;
         $this->mode = $mode;
@@ -26,7 +26,7 @@ class Model_Order_Payment_Allpay {
     function checkout($o_id,$total_price,$extra_info=array()){
         $this->codedata['MerchantTradeNo'] = $o_id;
         $this->codedata['MerchantTradeDate'] = date("Y/m/d H:i:s");
-        $this->codedata['TotalAmount'] = $total_price;
+        $this->codedata['TradeAmount'] = $total_price;
         $this->codedata = array_merge($this->codedata,$this->config['params']);
         if(!empty($extra_info)){
             foreach($extra_info as $k => $v){
@@ -36,17 +36,12 @@ class Model_Order_Payment_Allpay {
             }
         }
         $this->fields['XMLData'] = $this->make_xml();
-        $tpl = new TemplatePower($this->template);
-        $tpl->prepare();
-        $tpl->assignGlobal("AUTHORIZED_URL",$this->url[$this->mode]);
-        foreach($this->fields as $k => $v){
-            $tpl->newBlock("CARD_FIELD_LIST");
-            $tpl->assign(array(
-                "TAG_KEY" => $k,
-                "TAG_VALUE" => $v
-            ));
-        }
-        $tpl->printToScreen();
+        $curl = new Curl();
+        $curl->get($this->url[$this->mode],$this->fields);
+        $local_res['code'] = $curl->error?0:1;
+        $local_res['content'] = $curl->response;
+        $_SESSION['atm_local_result'] = $local_res;
+        header("location:".$this->config['params']['ReplyURL']);
         die();
     }
     //更新訂單
@@ -81,7 +76,7 @@ class Model_Order_Payment_Allpay {
     }
     /*製作xml*/
     function make_xml(){
-        $tpl = new TemplatePower("templates/allpay-xmldata.xml");
+        $tpl = new TemplatePower($this->xml_template);
         $tpl->prepare();
         foreach($this->codedata as $k => $v){
             if(!in_array($k,array("MerchantTradeDate"))){
