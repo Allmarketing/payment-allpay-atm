@@ -4,22 +4,10 @@
         <MerchantID>{MerchantID}</MerchantID>
         <MerchantTradeNo>{MerchantTradeNo}</MerchantTradeNo>
         <MerchantTradeDate>{MerchantTradeDate}</MerchantTradeDate>
-        <TotalAmount>{TotalAmount}</TotalAmount>
-        <TradeDesc>{TradeDesc}</TradeDesc>
-        <CardNo>{CardNo}</CardNo>
-        <CardValidMM>{CardValidMM}</CardValidMM>
-        <CardValidYY>{CardValidYY}</CardValidYY>
-        <CardCVV2>{CardCVV2}</CardCVV2>
-        <UnionPay>{UnionPay}</UnionPay>
-        <Installment>{Installment}</Installment>
-        <ThreeD>{ThreeD}</ThreeD>
-        <CharSet>{CharSet}</CharSet>
-        <Enn>{Enn}</Enn>
-        <BankOnly>{BankOnly}</BankOnly>
-        <Redeem>{Redeem}</Redeem>
-        <ReturnURL>{ReturnURL}</ReturnURL>
-        <ServerReplyURL>{ServerReplyURL}</ServerReplyURL>
-        <ClientBackURL>{ClientBackURL}</ClientBackURL>
+        <TradeAmount>{TradeAmount}</TradeAmount>
+        <ExpireDate>{ExpireDate}</ExpireDate>
+        <BankName>{BankName}</BankName>
+        <ReplyURL>{ReplyURL}</ReplyURL>
         <Remark>{Remark}</Remark>
     </Data>
 </Root>
