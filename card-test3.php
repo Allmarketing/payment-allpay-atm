@@ -11,7 +11,7 @@ $tpl = new TemplatePower("test3.html");
 $tpl->prepare();
 if($_GET['VAReturn']){
     /*初始化payment物件*/
-    $card = new Model_Order_Payment_Allpay_Atm($cms_cfg['vaccount'], $cms_cfg['Hash'],$cms_cfg['exe_mode']);
+    $card = new Model_Order_Payment_Allpay_Atm($cms_cfg['vaccount']);
 //    /*解析回傳結果*/
 //    $returnXML = $card->parse_xmldata($_SESSION['atm_local_result']['content']);
 //    /*更新訂單*/
