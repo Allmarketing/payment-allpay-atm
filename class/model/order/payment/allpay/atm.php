@@ -15,10 +15,10 @@ class Model_Order_Payment_Allpay_Atm {
         'running' => "https://pay.allpay.com.tw/payment/Srv/gateway",
     );
     protected $xml_template = "templates/allpay-vaccount-xmldata.xml";
-    function __construct($config,$hash,$mode="testing") {
+    function __construct($config) {
         $this->config = $config;
-        $this->mode = $mode;
-        $this->hash = $hash;
+        $this->mode = $config['exe_mode'];
+        $this->hash = $config['Hash'];
         $this->fields['MerchantID'] = $this->config['MerchantID'];
         $this->fields['PaymentType'] = $this->config['PaymentType'];
         $this->codedata['MerchantID'] = $this->config['MerchantID'];
