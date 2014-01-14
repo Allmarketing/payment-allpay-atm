@@ -61,9 +61,9 @@ class Model_Order_Payment_Allpay_Atm {
                     . "o_status='1', "
                     . "TradeNo = '".$result->Data->TradeNo."', "
                     . "RtnCode = '".$result->Data->RtnCode."', "
-                    . "gwsr = '".$result->Data->gwsr."', "
-                    . "process_date = '".$result->Data->process_date."', "
-                    . "auth_code = '".$result->Data->auth_code."' "
+                    . "PayDate = '".$result->Data->PayDate."', "
+                    . "AccBank = '".$result->Data->AccBank."', "
+                    . "AccNo = '".$result->Data->AccNo."' "
                     . "where o_id='".$oid."'";
         }else{
             //更新訂單狀態
@@ -72,9 +72,9 @@ class Model_Order_Payment_Allpay_Atm {
                         . "o_status='10', "
                         . "TradeNo = '".$result->Data->TradeNo."', "
                         . "RtnCode = '".$result->Data->RtnCode."', "
-                        . "gwsr = '".$result->Data->gwsr."', "
-                        . "process_date = '".$result->Data->process_date."', "
-                        . "auth_code = '".$result->Data->auth_code."' "
+                        . "PayDate = '".$result->Data->PayDate."', "
+                        . "AccBank = '".$result->Data->AccBank."', "
+                        . "AccNo = '".$result->Data->AccNo."' "
                         . "where o_id='".$oid."'";
             }
         }
