@@ -3,7 +3,7 @@ require_once "TP/class.TemplatePower.inc.php";
 require_once "class/model/order/payment/allpay/atm.php"; 
 require_once "class/mcrypt/aes.php"; 
 require_once "conf/config.inc.php";
-require_once "conf/creditcard.php";
+require_once "conf/vaccount.php";
 require_once "conf/database.php";
 include_once("libs/libs-mysql.php");
 $db = new DB($cms_cfg['db_host'],$cms_cfg['db_user'],$cms_cfg['db_password'],$cms_cfg['db_name'],$cms_cfg['tb_prefix']);
