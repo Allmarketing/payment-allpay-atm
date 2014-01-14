@@ -5,6 +5,7 @@ require_once "conf/vaccount.php";
 require_once "conf/config.inc.php";
 if($_POST){
     $card = new Model_Order_Payment_Allpay_Atm($cms_cfg['vaccount']);
-    $card->checkout($_POST['orderid'], $_POST['price']);
+    $bank = $_POST['BankName']?$_POST['BankName']:$cms_cfg['vaccount']['params']['BankName'];
+    $card->checkout($_POST['orderid'], $_POST['price'],array('BankName'=>$bank));
 }
 
