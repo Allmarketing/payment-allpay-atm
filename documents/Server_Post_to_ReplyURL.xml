@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Root>
     <Data>
-        <MerchantID>123456789</MerchantID>
-        <MerchantTradeNo>123456_abc</MerchantTradeNo>
+        <MerchantID>2000132</MerchantID>
+        <MerchantTradeNo>201401140053</MerchantTradeNo>
         <RtnCode>1</RtnCode>
         <RtnMsg>Succeeded</RtnMsg>
-        <TradeNo>201210231145526584</TradeNo>
-        <PayDate>2012/06/07 11:45:53</PayDate>
-        <TradeAmount>20000</TradeAmount>
-        <AccBank>001</AccBank>
-        <AccNo>12345</AccNo>
+        <TradeNo>20140114125848944723</TradeNo>
+        <PayDate>2014/01/14 12:59:49</PayDate>
+        <TradeAmount>1150</TradeAmount>
+        <AccBank></AccBank>
+        <AccNo></AccNo>
+        <SimulatePaid>1</SimulatePaid>
     </Data>
 </Root>
