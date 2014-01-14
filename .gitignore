@@ -22,3 +22,4 @@ Thumbs.db
 /conf/counter.txt
 /conf/creditcard.php
 .git-ftp.log
+/tmp/*
