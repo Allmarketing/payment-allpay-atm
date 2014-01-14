@@ -22,12 +22,12 @@ if($_GET['VAReturn']){
         }
     }    
     $tpl->printToScreen();
-}else if($_POST['XMLData']){
+}elseif($_POST['XMLData']){
     /*解析回傳結果*/
-    $returnXML = $card->parse_xmldata($_SESSION['atm_local_result']['content']);
+    $returnXML = $card->parse_xmldata($_POST['XMLData']);
     /*更新訂單*/
     $sql = $card->update_order($db,$returnXML);
     if(file_put_contents("tmp/".date("YmdHis").".txt", $sql)!==false){
-        echo 1;
+        echo "1|OK";
     }
 }
