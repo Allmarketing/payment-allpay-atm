@@ -31,7 +31,7 @@ class Model_Order_Payment_Allpay_Atm {
         $this->codedata = array_merge($this->codedata,$this->config['params']);
         if(!empty($extra_info)){
             foreach($extra_info as $k => $v){
-                if(!isset($this->codedata[$k])){
+                if(isset($this->codedata[$k])){
                     $this->codedata[$k] = $v;
                 }
             }
