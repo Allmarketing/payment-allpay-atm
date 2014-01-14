@@ -8,7 +8,13 @@
     <body>
         <form action="card-test2.php" method="post">
             訂單:<input type="text" name="orderid" value=""/><br/>
-            訂單金額:<input type="text" name="price" value=""/>
+            訂單金額:<input type="text" name="price" value=""/><br/>
+            <div>本店收款帳號與下列銀行合作，請選擇欲轉帳之行別：</div>
+            轉帳銀行<select name="BankName">
+                        <!-- START BLOCK : BANK_LIST -->
+                        <option value="{BANK_CODE}">{BANK_NAME}</option>
+                        <!-- END BLOCK : BANK_LIST -->
+                    </select>
             <input type="submit" value="送出"/>
         </form>
     </body>
