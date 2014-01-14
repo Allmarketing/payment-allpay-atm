@@ -2,6 +2,7 @@
 require_once "returncode/atm.php";
 require_once "class/mcrypt/aes.php";
 require_once "class/Curl.class.php";
+require_once "libs/libs-curl-extension.php";
 class Model_Order_Payment_Allpay_Atm {
     //put your code here
     protected $config;
@@ -10,7 +11,7 @@ class Model_Order_Payment_Allpay_Atm {
     protected $fields = array();
     protected $codedata = array();
     protected $url = array(
-        'testing' => "http://pay-stage.allpay.com.tw/AtmPayment/ChooseAtmBank",
+        'testing' => "http://pay-stage.allpay.com.tw/payment/Srv/gateway",
         'running' => "https://pay.allpay.com.tw/payment/Srv/gateway",
     );
     protected $xml_template = "templates/allpay-vaccount-xmldata.xml";
@@ -36,12 +37,20 @@ class Model_Order_Payment_Allpay_Atm {
             }
         }
         $this->fields['XMLData'] = $this->make_xml();
-        $curl = new Curl();
-        $curl->get($this->url[$this->mode],$this->fields);
-        $local_res['code'] = $curl->error?0:1;
-        $local_res['content'] = $curl->response;
-        $_SESSION['atm_local_result'] = $local_res;
-        header("location:".$this->config['params']['ReplyURL']);
+        $GET = http_build_query($this->fields);
+        $ch  = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->url[$this->mode].'?'.$GET); //GET
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        $redirect=0;
+        $response = curl_redirect_exec($ch,$redirect);
+        $returnXML = simplexml_load_string($response);
+        $data = array("VAReturn"=>1);
+        foreach($returnXML->Data->children() as $elm){
+            $key = trim($elm->getName());
+            $data[$key] = sprintf("%s",$elm);
+        }
+        $GET = http_build_query($data);
+        header("location:".$this->config['params']['ReplyURL']."?".$GET);
         die();
     }
     //更新訂單
