@@ -18,7 +18,7 @@ if($_GET['VAReturn']){
     foreach($_GET as $key => $value){
         $tpl->assign("MSG_".strtoupper($key),$value);
         if($key=="RtnCode"){
-            $tpl->assign("MSG_".strtoupper($key)."_STR",  Model_Order_Payment_Returncode_Allpay_Atm::$code[$value]);
+            $tpl->assign("MSG_".strtoupper($key)."_STR",  Model_Order_Payment_Allpay_Returncode_Atm::$code[$value]);
         }
     }    
     $tpl->printToScreen();

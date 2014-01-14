@@ -1,5 +1,5 @@
 <?php
-class Model_Order_Payment_Returncode_Allpay_Atm {
+class Model_Order_Payment_Allpay_Returncode_Atm {
     //授權碼
     static $code = array(
         '1' => '交易成功',
